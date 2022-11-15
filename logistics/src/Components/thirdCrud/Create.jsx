@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from "react";
 import DataContext from "../../Contexts/DataContext";
 import ThirdContext from "../../Contexts/ThirdContext";
 import capacities from "../../data/capacity";
-import { v4 as uuidv4 } from "uuid";
 
 function Create() {
   const [capacity, setCapacity] = useState(0);
@@ -17,7 +16,6 @@ function Create() {
       return;
     }
     setCreateData({
-      // id_number: title + "-" + uuidv4(),
       title: title,
       capacity: parseInt(capacity),
       left_capacity: parseInt(capacity),

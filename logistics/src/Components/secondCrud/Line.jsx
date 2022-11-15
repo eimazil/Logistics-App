@@ -25,7 +25,7 @@ function Line({ box }) {
             <div>Perishable: {box.perishable === 1 ? "Yes" : "No"}</div>
             <div>Container ID: {box.container_id}</div>
           </div>
-          <div className="d-flex flex-row flex-lg-column gap-5px ">
+          <div className="d-flex flex-row flex-lg-column gap-2 ">
             <button
               onClick={() => setModalData(box)}
               type="button"

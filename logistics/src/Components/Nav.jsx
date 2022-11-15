@@ -6,7 +6,7 @@ function Nav({ status }) {
       <div className="row">
         <div className="col-12">
           <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-            <div className="navbar-brand">Donations center</div>
+            <div className="navbar-brand">Logistics Hub</div>
             <button
               className="navbar-toggler"
               type="button"
@@ -34,10 +34,7 @@ function Nav({ status }) {
                     Information
                   </NavLink>
                 ) : null}
-                {status === 1 ||
-                status === 2 ||
-                status === 3 ||
-                status === 4 ? (
+                {status === 3 ? (
                   <NavLink
                     to="/secondLink"
                     className={({ isActive }) =>
