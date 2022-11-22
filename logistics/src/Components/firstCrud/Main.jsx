@@ -10,6 +10,8 @@ function Main() {
   const [modalData, setModalData] = useState(null);
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
+  console.log(containers);
+
   const reList = (data) => {
     const d = new Map();
     data.forEach((line) => {

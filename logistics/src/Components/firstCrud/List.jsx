@@ -10,11 +10,9 @@ function List() {
       <h5 className="card-header">Containers list</h5>
       <div className="card-body">
         <ul className="list-group">
-          {containers?.map((c, i) =>
-            c[1][0].ocupation > 0 ? (
-              <Line key={c[1][0].id} container={c} />
-            ) : null
-          )}
+          {containers?.map((c, i) => (
+            <Line key={c[1][0].id} container={c} />
+          ))}
         </ul>
       </div>
     </div>

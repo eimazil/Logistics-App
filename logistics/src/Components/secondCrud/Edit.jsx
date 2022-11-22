@@ -5,6 +5,7 @@ import DataContext from "../../Contexts/DataContext";
 
 function Edit() {
   const [title, setTitle] = useState("");
+  const [weight, setWeight] = useState("");
   const [flammability, setFlammability] = useState(false);
   const [perishable, setPerishable] = useState(false);
   const [containerID, setContainerID] = useState(false);
@@ -49,6 +50,7 @@ function Edit() {
 
     setEditData({
       title,
+      weight,
       flammability,
       perishable,
       container_id: parseInt(containerID),
@@ -69,6 +71,7 @@ function Edit() {
       return;
     }
     setTitle(modalData.title);
+    setWeight(modalData.weight);
     setFlammability(modalData.flammability);
     setPerishable(modalData.perishable);
     setContainerID(modalData.container_id);
@@ -102,6 +105,15 @@ function Edit() {
                   className="form-control"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Weight</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
                 />
               </div>
               <div className="mb-3">

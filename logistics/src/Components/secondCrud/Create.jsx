@@ -7,6 +7,7 @@ function Create() {
   const [title, setTitle] = useState("");
   const [flammability, setFlammability] = useState(false);
   const [perishable, setPerishable] = useState(false);
+  const [weight, setWeight] = useState("");
   const [containerID, setContainerID] = useState(0);
   const fileInput = useRef();
   const [photoPrint, setPhotoPrint] = useState(null);
@@ -39,6 +40,7 @@ function Create() {
     }
     setCreateData({
       title,
+      weight,
       flammability,
       perishable,
       image: photoPrint,
@@ -46,6 +48,7 @@ function Create() {
     });
     setOccupyContainer({ container_id: parseInt(containerID) });
     setTitle("");
+    setWeight("");
     setFlammability(false);
     setPerishable(false);
     setPhotoPrint(null);
@@ -64,6 +67,15 @@ function Create() {
             className="form-control"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Weight</label>
+          <input
+            type="number"
+            className="form-control"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
           />
         </div>
         <div className="mb-3">

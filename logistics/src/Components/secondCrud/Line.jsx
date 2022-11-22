@@ -6,8 +6,8 @@ function Line({ box }) {
 
   return (
     <li className="list-group-item">
-      <div className="line__content">
-        <div className="col-12 col-lg-3 margin-right-30px">
+      <div className="line__content gap-2">
+        <div className="col-8 col-lg-3 margin-right-30px">
           <h5>{box.title}</h5>
           {box.image ? (
             <img
@@ -20,10 +20,11 @@ function Line({ box }) {
           )}
         </div>
         <div className="col-12 col-lg-8 d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between">
-          <div>
-            <div>Flamable: {box.flammability === 1 ? "Yes" : "No"}</div>
-            <div>Perishable: {box.perishable === 1 ? "Yes" : "No"}</div>
-            <div>Container ID: {box.container_id}</div>
+          <div className="d-flex flex-column gap-1">
+            <span>Weight: {box.weight} kg</span>
+            <span>Flamable: {box.flammability === 1 ? "Yes" : "No"}</span>
+            <span>Perishable: {box.perishable === 1 ? "Yes" : "No"}</span>
+            <span>Container ID: {box.container_id}</span>
           </div>
           <div className="d-flex flex-row flex-lg-column gap-2 ">
             <button

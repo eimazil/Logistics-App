@@ -15,6 +15,7 @@ function Main() {
   const [modalData, setModalData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [occupyContainer, setOccupyContainer] = useState(null);
+  const [weightChange, setWeightChange] = useState(null);
   const [changeContainers, setChangeContainers] = useState(null);
 
   // CONTAINER

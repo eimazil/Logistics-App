@@ -7,6 +7,7 @@ import { useState, useCallback } from "react";
 import DataContext from "./Contexts/DataContext";
 import { v4 as uuidv4 } from "uuid";
 import Messages from "./Components/Messages";
+import NotFound from "./Components/404";
 
 // Main screen imports
 import FirstCrud from "./Components/firstCrud/Main";
@@ -66,6 +67,7 @@ function App() {
             path="/logout"
             element={<LogoutPage setRoleChange={setRoleChange} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </DataContext.Provider>

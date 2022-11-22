@@ -186,7 +186,7 @@ app.put("/admin/boxCreate/:id", (req, res) => {
     UPDATE containers
     SET
     ocupation = ocupation + 1,
-    left_capacity = capacity - ocupation
+    left_capacity = capacity - ocupation,
     WHERE id = ?
     `;
   con.query(sql, [req.params.id], (err, result) => {
@@ -241,13 +241,14 @@ app.put("/admin/boxChangeRemove/:id", (req, res) => {
 
 app.post("/admin/boxes", (req, res) => {
   const sql = `
-    INSERT INTO boxes (title, flammability, perishable, image, container_id)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO boxes (title, weight, flammability, perishable, image, container_id)
+    VALUES (?, ?, ?, ?, ?, ?)
     `;
   con.query(
     sql,
     [
       req.body.title,
+      req.body.weight,
       req.body.flammability,
       req.body.perishable,
       req.body.image,
@@ -289,11 +290,12 @@ app.put("/admin/boxes/:id", (req, res) => {
   if (req.body.deletePhoto) {
     sql = `
         UPDATE boxes
-        SET title = ?, flammability = ?, perishable = ?, container_id = ?, image = null
+        SET title = ?, weight = ?, flammability = ?, perishable = ?, container_id = ?, image = null
         WHERE id = ?
         `;
     r = [
       req.body.title,
+      req.body.weight,
       req.body.flammability,
       req.body.perishable,
       req.body.container_id,
@@ -302,11 +304,12 @@ app.put("/admin/boxes/:id", (req, res) => {
   } else if (req.body.image) {
     sql = `
         UPDATE boxes
-        SET title = ?, flammability = ?, perishable = ?, container_id = ?, image = ?
+        SET title = ?, weight = ?, flammability = ?, perishable = ?, container_id = ?, image = ?
         WHERE id = ?
         `;
     r = [
       req.body.title,
+      req.body.weight,
       req.body.flammability,
       req.body.perishable,
       req.body.container_id,
@@ -316,11 +319,12 @@ app.put("/admin/boxes/:id", (req, res) => {
   } else {
     sql = `
         UPDATE boxes
-        SET title = ?, flammability = ?, perishable = ?, container_id = ?
+        SET title = ?, weight = ?, flammability = ?, perishable = ?, container_id = ?
         WHERE id = ?
         `;
     r = [
       req.body.title,
+      req.body.weight,
       req.body.flammability,
       req.body.perishable,
       req.body.container_id,
@@ -336,9 +340,9 @@ app.put("/admin/boxes/:id", (req, res) => {
 // Home
 app.get("/home/containers", (req, res) => {
   const sql = `
-    SELECT c.*, b.title as box_title, b.id as box_id, b.flammability, b.perishable, b.image, b.container_id
+    SELECT c.*, b.title as box_title, b.id as box_id, b.weight, b.flammability, b.perishable, b.image, b.container_id
     FROM containers AS c
-    LEFT JOIN boxes AS b
+    RIGHT JOIN boxes AS b
     ON c.id = b.container_id
     ORDER BY c.id
     `;
@@ -346,6 +350,10 @@ app.get("/home/containers", (req, res) => {
     if (err) throw err;
     res.send(result);
   });
+});
+
+app.all("*", (req, res) => {
+  res.status(404).send();
 });
 
 app.listen(port, () => {
